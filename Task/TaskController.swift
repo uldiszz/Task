@@ -90,7 +90,7 @@ class TaskController {
     
     func scheduleNotification(task: Task) {
         // 1. Make notification content
-        // 2. Make  a trigger and identifier
+        // 2. Make  a trigger (and identifier)
         // 3. Make a notification request
         // 4. Add the request to the app
         guard let name = task.name, let date = task.due as? Date else { return }
@@ -110,6 +110,6 @@ class TaskController {
     }
     
     func cancelNotification(task: Task) {
-        
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [task.id!])
     }
 }
