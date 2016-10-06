@@ -20,6 +20,7 @@ extension Task {
         self.name = name
         self.notes = notes
         self.due = due as NSDate?
+        self.id = String(describing: UUID())
         if let isComplete = isComplete {
             self.isComplete = isComplete
         } else {

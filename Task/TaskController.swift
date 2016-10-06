@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UserNotifications
 
 class TaskController {
     static let sharedController = TaskController()
@@ -88,7 +89,24 @@ class TaskController {
     }
     
     func scheduleNotification(task: Task) {
+        // 1. Make notification content
+        // 2. Make  a trigger and identifier
+        // 3. Make a notification request
+        // 4. Add the request to the app
+        guard let name = task.name, let date = task.due as? Date else { return }
         
+        let notificationContent = UNMutableNotificationContent()
+        notificationContent.title = name
+        if let notes = task.notes {
+            notificationContent.body = String(notes.characters.prefix(20))
+        }
+        
+        let dateComponents = Calendar.current.dateComponents([.day, .month, .year], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: task.id!, content: notificationContent, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
     func cancelNotification(task: Task) {
