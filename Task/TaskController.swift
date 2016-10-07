@@ -13,33 +13,19 @@ import UserNotifications
 class TaskController {
     static let sharedController = TaskController()
     
-    var tasks: [Task] {
-        return self.fetchTasks()
-    }
+    var fetchedResultsController: NSFetchedResultsController<Task>
     
-    var mockTasks: [Task] {
-        let taskOne = createTask(name: "Today's task", notes: "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", due: Date(), isComplete: nil)
-        let taskTwo = createTask(name: "Tomorrow's task", notes: "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.", due: Date().addingTimeInterval(86400), isComplete: nil) // Added 86400 seconds (it is 1 day) so this task's due date is tomorrow
-        let taskThree = createTask(name: "Done task", notes: "Nullam id dolor id.", due: nil, isComplete: true)
-        
-        return [taskOne, taskTwo, taskThree]
-    }
-    
-    var completedTasks: [Task] {
-        return tasks.filter {$0.isComplete == true}
-    }
-    var incompleteTasks: [Task] {
-        return tasks.filter {$0.isComplete == false}
-    }
-    
-    func fetchTasks() -> [Task] {
+    init() {
         let request: NSFetchRequest<Task> = Task.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "isComplete", ascending: true), NSSortDescriptor(key: "due", ascending: true)]
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
+                                                managedObjectContext: CoreDataStack.context,
+                                                sectionNameKeyPath: "isComplete",
+                                                cacheName: nil)
         do {
-            let tasks = try CoreDataStack.container.viewContext.fetch(request)
-            return tasks
+            try fetchedResultsController.performFetch()
         } catch {
-            NSLog("Error while fetching tasks from code data: \(error.localizedDescription)")
-            return []
+            NSLog("Error preforming fetch: \(error)")
         }
     }
     
@@ -48,7 +34,7 @@ class TaskController {
         if let notes = notes { task.notes = notes }
         if let due = due { task.due = due as NSDate }
         if let isComplete = isComplete { task.isComplete = isComplete }
-        save()
+        
         scheduleNotification(task: task)
         return task
     }
@@ -61,7 +47,6 @@ class TaskController {
             cancelNotification(task: task)
             scheduleNotification(task: task)
         }
-        save()
     }
     
     func updateCompleteness(task: Task) {
@@ -71,13 +56,11 @@ class TaskController {
         } else {
             scheduleNotification(task: task)
         }
-        save()
     }
     
     func remove(task: Task) {
         task.managedObjectContext?.delete(task)
         cancelNotification(task: task)
-        save()
     }
     
     func save() {
@@ -103,7 +86,7 @@ class TaskController {
         
         let dateComponents = Calendar.current.dateComponents([.day, .month, .year], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        
+
         let request = UNNotificationRequest(identifier: task.id!, content: notificationContent, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)

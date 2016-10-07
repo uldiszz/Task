@@ -17,7 +17,6 @@
 		283BABB61DA59BA800B1B9A2 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283BABB51DA59BA800B1B9A2 /* CoreDataStack.swift */; };
 		283BABB81DA59BDD00B1B9A2 /* TaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283BABB71DA59BDD00B1B9A2 /* TaskController.swift */; };
 		283BABBB1DA59C2000B1B9A2 /* Task+Consistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283BABBA1DA59C2000B1B9A2 /* Task+Consistence.swift */; };
-		283BABBE1DA5B70A00B1B9A2 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283BABBD1DA5B70A00B1B9A2 /* DateHelpers.swift */; };
 		283BABC01DA5BC7600B1B9A2 /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283BABBF1DA5BC7600B1B9A2 /* ButtonTableViewCell.swift */; };
 		283BABC31DA5BF7900B1B9A2 /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 283BABC11DA5BF7900B1B9A2 /* checked.png */; };
 		283BABC41DA5BF7900B1B9A2 /* unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 283BABC21DA5BF7900B1B9A2 /* unchecked.png */; };
@@ -36,7 +35,6 @@
 		283BABB51DA59BA800B1B9A2 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		283BABB71DA59BDD00B1B9A2 /* TaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskController.swift; sourceTree = "<group>"; };
 		283BABBA1DA59C2000B1B9A2 /* Task+Consistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+Consistence.swift"; sourceTree = "<group>"; };
-		283BABBD1DA5B70A00B1B9A2 /* DateHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
 		283BABBF1DA5BC7600B1B9A2 /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
 		283BABC11DA5BF7900B1B9A2 /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
 		283BABC21DA5BF7900B1B9A2 /* unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked.png; sourceTree = "<group>"; };
@@ -77,7 +75,6 @@
 				283BABB91DA59BE200B1B9A2 /* Model Controllers */,
 				283BABB01DA5978200B1B9A2 /* View Controllers */,
 				283BAB9D1DA5970800B1B9A2 /* Main.storyboard */,
-				283BABBD1DA5B70A00B1B9A2 /* DateHelpers.swift */,
 				283BABA31DA5970800B1B9A2 /* Assets.xcassets */,
 				283BABA51DA5970800B1B9A2 /* LaunchScreen.storyboard */,
 				283BABA81DA5970800B1B9A2 /* Info.plist */,
@@ -196,7 +193,6 @@
 				283BABB21DA597B200B1B9A2 /* TaskListTableViewController.swift in Sources */,
 				283BABA21DA5970800B1B9A2 /* Task.xcdatamodeld in Sources */,
 				283BAB9A1DA5970800B1B9A2 /* AppDelegate.swift in Sources */,
-				283BABBE1DA5B70A00B1B9A2 /* DateHelpers.swift in Sources */,
 				283BABB81DA59BDD00B1B9A2 /* TaskController.swift in Sources */,
 				283BABB41DA59AFE00B1B9A2 /* TaskDetailTableViewController.swift in Sources */,
 			);
@@ -362,6 +358,7 @@
 				283BABAD1DA5970800B1B9A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
